@@ -1,5 +1,9 @@
 package com.rafsan.inventory.controller.pos;
 
+import java.net.URL;
+import java.sql.Timestamp;
+import java.util.ResourceBundle;
+
 import com.rafsan.inventory.entity.Invoice;
 import com.rafsan.inventory.entity.Item;
 import com.rafsan.inventory.entity.Payment;
@@ -9,9 +13,8 @@ import com.rafsan.inventory.model.EmployeeModel;
 import com.rafsan.inventory.model.InvoiceModel;
 import com.rafsan.inventory.model.ProductModel;
 import com.rafsan.inventory.model.SalesModel;
-import java.net.URL;
-import java.sql.Timestamp;
-import java.util.ResourceBundle;
+import com.rafsan.inventory.model.SupplierModel;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +25,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -37,18 +41,27 @@ public class InvoiceController implements Initializable {
     private ProductModel productModel;
     private SalesModel salesModel;
     private InvoiceModel invoiceModel;
+    private SupplierModel supplierModel;
     private Payment payment;
-
+    
+    @FXML
+    private ComboBox customerComboBox;
+    
     private double xOffset = 0;
     private double yOffset = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	System.out.println("Customer calledddddd");
         productModel = new ProductModel();
         employeeModel = new EmployeeModel();
         salesModel = new SalesModel();
         invoiceModel = new InvoiceModel();
+        supplierModel = new SupplierModel();
         totalAmountField.setText(String.valueOf(netPrice));
+        ObservableList<String> list = FXCollections.observableArrayList(supplierModel.getNames());
+        customerComboBox.setStyle("-fx-font: 20px \"Serif\";");
+        customerComboBox.setItems(list);
     }
 
     public void setData(double netPrice, ObservableList<Item> items, Payment payment) {
