@@ -32,6 +32,8 @@ public class Product implements Serializable {
     private double cgst;
     @Column(name = "sgst")
     private double sgst;
+    @Column(name = "hsncode")
+    private String hsncode;
     
     @Transient
     private double cgstPer;
@@ -71,7 +73,7 @@ public class Product implements Serializable {
     }*/
     
 	public Product(String productName, double price, double quantity, String description, double cgst,
-			double sgst, Category category, double cgstPer, double sgstPer) {
+			double sgst, Category category, double cgstPer, double sgstPer, String hsncode) {
 		super();
 		this.productName = productName;
 		this.price = price;
@@ -82,6 +84,7 @@ public class Product implements Serializable {
 		this.category = category;
 		this.cgstPer = cgstPer;
 		this.sgstPer = sgstPer;
+		this.hsncode=hsncode;
 	}
 
 	public Product(long id, String productName, double price, double quantity, String description, double cgst,
@@ -98,6 +101,16 @@ public class Product implements Serializable {
 		/*this.cgstPer = cgstPer;
 		this.sgstPer = sgstPer;*/
 //		this.supplier = supplier;
+	}
+	
+	
+
+	public String getHsncode() {
+		return hsncode;
+	}
+
+	public void setHsncode(String hsncode) {
+		this.hsncode = hsncode;
 	}
 
 	public long getId() {

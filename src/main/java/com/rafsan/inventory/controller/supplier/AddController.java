@@ -20,7 +20,7 @@ public class AddController implements Initializable, SupplierInterface {
     @FXML
     private TextField supplierField, phoneField;
     @FXML
-    private TextArea addressArea;
+    private TextArea addressArea,saddressArea;
     @FXML
     private Button saveButton;
     private SupplierModel supplierModel;
@@ -35,6 +35,7 @@ public class AddController implements Initializable, SupplierInterface {
         supplierField.setText("");
         phoneField.setText("");
         addressArea.setText("");
+        saddressArea.setText("");
     }
 
     @FXML
@@ -45,7 +46,8 @@ public class AddController implements Initializable, SupplierInterface {
             Supplier supplier = new Supplier(
                     supplierField.getText(),
                     phoneField.getText(),
-                    addressArea.getText()
+                    addressArea.getText(),
+                    saddressArea.getText()
             );
 
             supplierModel.saveSuplier(supplier);

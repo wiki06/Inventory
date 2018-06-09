@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 public class AddController implements Initializable, ProductInterface {
 
     @FXML
-    private TextField nameField, priceField, quantityField,cgst,sgst;
+    private TextField nameField, priceField, quantityField,cgst,sgst,hsnCode;
     @FXML
     private TextArea descriptionArea;
     @FXML
@@ -62,7 +62,7 @@ public class AddController implements Initializable, ProductInterface {
                     Double.parseDouble(sgst.getText()),
                     Double.parseDouble(cgst.getText()),
                     category,
-                    0.00,0.00
+                    0.00,0.00,hsnCode.getText()
             );
 
             productModel.saveProduct(product);

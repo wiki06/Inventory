@@ -50,6 +50,7 @@
 					<rowConstraints>
 						<RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
 						<RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
 						<RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
 						<RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
 						<RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
@@ -58,43 +59,49 @@
 					</rowConstraints>
 					<children>
 						<Label text="Product" GridPane.halignment="RIGHT" />
-						<Label text="Description" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+						<Label text="Description" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
 						<TextField fx:id="nameField" GridPane.columnIndex="1">
 							<GridPane.margin>
 								<Insets right="10.0" />
 							</GridPane.margin>
 						</TextField>
-						<TextArea fx:id="descriptionArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+						<TextArea fx:id="descriptionArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
 							<GridPane.margin>
 								<Insets right="10.0" />
 							</GridPane.margin>
 						</TextArea>
 						<Label text="Category" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-						<Label prefHeight="17.0" prefWidth="54.0" text="Unit Price" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-						<TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.rowIndex="2">
+						<Label prefHeight="17.0" prefWidth="54.0" text="Unit Price" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+						<TextField fx:id="priceField" GridPane.columnIndex="1" GridPane.rowIndex="3">
 							<GridPane.margin>
 								<Insets right="10.0" />
 							</GridPane.margin>
 						</TextField>
-						<Label prefHeight="17.0" prefWidth="49.0" text="Quantity" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+						<Label prefHeight="17.0" prefWidth="49.0" text="Quantity" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
 						<ComboBox fx:id="categoryBox" prefHeight="25.0" prefWidth="200.0" promptText="-Select-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-						<TextField fx:id="quantityField" GridPane.columnIndex="1" GridPane.rowIndex="3">
+						<TextField fx:id="quantityField" GridPane.columnIndex="1" GridPane.rowIndex="4">
 							<GridPane.margin>
 								<Insets right="10.0" />
 							</GridPane.margin>
 						</TextField>
-						<Label text="CGST %" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-						<TextField fx:id="cgst" prefHeight="25.0" prefWidth="309.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+						<Label text="CGST %" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+						<TextField fx:id="cgst" prefHeight="25.0" prefWidth="309.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
 							<GridPane.margin>
 								<Insets right="10.0" />
 							</GridPane.margin>
 						</TextField>
-						<TextField fx:id="sgst" GridPane.columnIndex="1" GridPane.rowIndex="5">
+						<TextField fx:id="sgst" GridPane.columnIndex="1" GridPane.rowIndex="6">
 							<GridPane.margin>
 								<Insets right="10.0" />
 							</GridPane.margin>
 						</TextField>
-						<Label text="SGST %" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+						<Label text="SGST %" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+                  <Label layoutX="62.0" layoutY="79.0" text="HSN Code" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <TextField fx:id="hsnCode" layoutX="120.0" layoutY="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
 
 					</children>
 				</GridPane>

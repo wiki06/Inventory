@@ -63,6 +63,7 @@
                         <TableView fx:id="productTable" minHeight="-Infinity" minWidth="-Infinity" prefHeight="205.0" prefWidth="740.0" VBox.vgrow="ALWAYS">
                           <columns>
                             <TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
+                             <TableColumn fx:id="hsnCodeColumn" prefWidth="75.0" text="HSNCode" />
                             <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="Category" />
                               <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
                               <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />

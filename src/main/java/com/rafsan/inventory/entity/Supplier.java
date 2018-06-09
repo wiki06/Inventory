@@ -21,21 +21,25 @@ public class Supplier implements Serializable {
     private String phone;
     @Column(name = "address")
     private String address;
+    @Column(name = "saddress")
+    private String saddress;
 
     public Supplier() {
     }
 
-    public Supplier(String name, String phone, String address) {
+    public Supplier(String name, String phone, String address, String saddress) {
         this.name = name;
         this.phone = phone;
         this.address = address;
+        this.saddress = saddress;
     }
 
-    public Supplier(long id, String name, String phone, String address) {
+    public Supplier(long id, String name, String phone, String address, String saddress) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.address = address;
+        this.saddress=saddress;
     }
 
     public long getId() {
@@ -69,4 +73,13 @@ public class Supplier implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
+
+	public String getSaddress() {
+		return saddress;
+	}
+
+	public void setSaddress(String saddress) {
+		this.saddress = saddress;
+	}
+    
 }

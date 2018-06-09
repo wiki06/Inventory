@@ -51,7 +51,7 @@ public class ProductController implements Initializable, ProductInterface {
     @FXML
     private TableColumn<Product, Long> idColumn;
     @FXML
-    private TableColumn<Product, String> categoryColumn,nameColumn, supplierColumn, descriptionColumn;
+    private TableColumn<Product, String> categoryColumn,nameColumn, supplierColumn, descriptionColumn,hsnCodeColumn;
     @FXML
     private TableColumn<Product, Double> priceColumn, quantityColumn,cgst,sgst;
     @FXML
@@ -93,6 +93,7 @@ public class ProductController implements Initializable, ProductInterface {
         cgst.setCellValueFactory(new PropertyValueFactory<>("cgst"));
         sgst.setCellValueFactory(new PropertyValueFactory<>("sgst"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        hsnCodeColumn.setCellValueFactory(new PropertyValueFactory<>("hsncode"));
         productTable.setItems(PRODUCTLIST);
 
         filterData();
