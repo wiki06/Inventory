@@ -33,10 +33,10 @@ public class Product implements Serializable {
     @Column(name = "sgst")
     private double sgst;
     
-  /*  @Transient
+    @Transient
     private double cgstPer;
     @Transient
-    private double sgstPer;*/
+    private double sgstPer;
     
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "categoryId")
@@ -71,7 +71,7 @@ public class Product implements Serializable {
     }*/
     
 	public Product(String productName, double price, double quantity, String description, double cgst,
-			double sgst, Category category) {
+			double sgst, Category category, double cgstPer, double sgstPer) {
 		super();
 		this.productName = productName;
 		this.price = price;
@@ -80,10 +80,12 @@ public class Product implements Serializable {
 		this.cgst = cgst;
 		this.sgst = sgst;
 		this.category = category;
+		this.cgstPer = cgstPer;
+		this.sgstPer = sgstPer;
 	}
 
 	public Product(long id, String productName, double price, double quantity, String description, double cgst,
-			double sgst, Category category) {
+			double sgst, Category category/*, double cgstPer, double sgstPer*/) {
 		super();
 		this.id = id;
 		this.productName = productName;
@@ -93,6 +95,8 @@ public class Product implements Serializable {
 		this.cgst = cgst;
 		this.sgst = sgst;
 		this.category = category;
+		/*this.cgstPer = cgstPer;
+		this.sgstPer = sgstPer;*/
 //		this.supplier = supplier;
 	}
 
@@ -172,7 +176,7 @@ public class Product implements Serializable {
 
 	
 	
-	/*public double getCgstPer() {
+	public double getCgstPer() {
 		return cgstPer;
 	}
 
@@ -186,7 +190,7 @@ public class Product implements Serializable {
 
 	public void setSgstPer(double sgstPer) {
 		this.sgstPer = sgstPer;
-	}*/
+	}
 
 	@Override
     public String toString() {
@@ -197,6 +201,9 @@ public class Product implements Serializable {
                 ", description=" + description + 
                 ", category=" + category + 
                 ", cgst="+cgst+
-                ", sgst="+sgst+'}';
+                ", sgst="+sgst+
+                ", cgstPer="+cgstPer+
+                ", sgstPer="+sgstPer+
+                '}';
     }
 }

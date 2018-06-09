@@ -89,8 +89,8 @@ public class PosController implements Initializable, ProductInterface {
         totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
         cgstColumn.setCellValueFactory(new PropertyValueFactory<>("cgst"));
         sgstColumn.setCellValueFactory(new PropertyValueFactory<>("sgst"));
-       /* cgstperColumn.setCellValueFactory(new PropertyValueFactory<>("cgstper"));
-        sgstperColumn.setCellValueFactory(new PropertyValueFactory<>("sgstper"));*/
+        cgstperColumn.setCellValueFactory(new PropertyValueFactory<>("cgstPer"));
+        sgstperColumn.setCellValueFactory(new PropertyValueFactory<>("sgstPer"));
         
         listTableView.setItems(ITEMLIST);
 
@@ -229,7 +229,7 @@ public class PosController implements Initializable, ProductInterface {
             double sgst = (Double.valueOf(sgstField.getText()) / 100) * subtotal;
             double total = subtotal + cgst + sgst;
             ITEMLIST.add(new Item(productName, unitPrice, quantity, Double.valueOf(df2.format(total)),
-            		Double.valueOf(df2.format(cgst)),Double.valueOf(df2.format(sgst))));
+            		Double.valueOf(df2.format(cgst)),Double.valueOf(df2.format(sgst)), cgstper, sgstper));
             calculation();
 
             resetAdd();

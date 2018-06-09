@@ -81,7 +81,9 @@
                       <TableColumn fx:id="itemColumn" prefWidth="125.0" text="Item" />
                         <TableColumn fx:id="priceColumn" prefWidth="75.0" text="MRP" />
                         <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Quantity" />
+                        <TableColumn fx:id="cgstperColumn" prefWidth="75.0" text="CGST Rate" />
                         <TableColumn fx:id="cgstColumn" prefWidth="75.0" text="CGST" />
+                        <TableColumn fx:id="sgstperColumn" prefWidth="75.0" text="SGST Rate" />
                         <TableColumn fx:id="sgstColumn" prefWidth="75.0" text="SGST" />
                         <TableColumn fx:id="totalColumn" prefWidth="75.0" text="Total" />
                     </columns>

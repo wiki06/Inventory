@@ -61,7 +61,8 @@ public class AddController implements Initializable, ProductInterface {
                     descriptionArea.getText(),
                     Double.parseDouble(sgst.getText()),
                     Double.parseDouble(cgst.getText()),
-                    category
+                    category,
+                    0.00,0.00
             );
 
             productModel.saveProduct(product);

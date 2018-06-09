@@ -8,8 +8,8 @@ public class Item {
     private double total;
     private double cgst;
     private double sgst;
-    /*private double cgstPer;
-    private double sgstPer;*/
+    private double cgstPer;
+    private double sgstPer;
 
     public Item() {
     }
@@ -28,8 +28,8 @@ public class Item {
                 ", total=" + total + 
                 ", cgst=" + cgst+
                 ", sgst=" + sgst+
-                /*", cgstPer=" + cgstPer+
-                ", cgstPer=" + sgstPer+*/'}';
+                ", cgstPer=" + cgstPer+
+                ", cgstPer=" + sgstPer+'}';
     }
 
 	public String getItemName() {
@@ -80,7 +80,7 @@ public class Item {
 		this.sgst = sgst;
 	}
 
-/*	public double getCgstPer() {
+	public double getCgstPer() {
 		return cgstPer;
 	}
 
@@ -94,9 +94,9 @@ public class Item {
 
 	public void setSgstPer(double sgstPer) {
 		this.sgstPer = sgstPer;
-	}*/
+	}
 
-	public Item(String itemName, double unitPrice, double quantity, double total, double cgst, double sgst) {
+	public Item(String itemName, double unitPrice, double quantity, double total, double cgst, double sgst, double cgstPer, double sgstPer) {
 		super();
 		this.itemName = itemName;
 		this.unitPrice = unitPrice;
@@ -104,7 +104,7 @@ public class Item {
 		this.total = total;
 		this.cgst = cgst;
 		this.sgst = sgst;
-		/*this.cgstPer = cgstPer;
-		this.sgstPer = sgstPer;*/
+		this.cgstPer = cgstPer;
+		this.sgstPer = sgstPer;
 	}
 }
