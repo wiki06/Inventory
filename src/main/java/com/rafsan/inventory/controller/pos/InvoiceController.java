@@ -9,6 +9,7 @@ import com.rafsan.inventory.entity.Item;
 import com.rafsan.inventory.entity.Payment;
 import com.rafsan.inventory.entity.Product;
 import com.rafsan.inventory.entity.Sale;
+import com.rafsan.inventory.entity.Supplier;
 import com.rafsan.inventory.model.EmployeeModel;
 import com.rafsan.inventory.model.InvoiceModel;
 import com.rafsan.inventory.model.ProductModel;
@@ -77,6 +78,8 @@ public class InvoiceController implements Initializable {
         if (validateInput()) {
             double paid = Double.parseDouble(paidAmountField.getText().trim());
             double retail = Math.abs(paid - netPrice);
+            
+            Supplier supplier = supplierModel.getSupplier(customerComboBox.getSelectionModel().getSelectedIndex() + 1);
 
             String invoiceId = String.valueOf(new Timestamp(System.currentTimeMillis()).getTime());
 
@@ -114,7 +117,7 @@ public class InvoiceController implements Initializable {
 
             FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/Confirm.fxml")));
             ConfirmController controller = new ConfirmController();
-            controller.setData(retail, items, invoiceId);
+            controller.setData(retail, items, invoiceId, supplier);
             loader.setController(controller);
             Parent root = loader.load();
             Scene scene = new Scene(root);
