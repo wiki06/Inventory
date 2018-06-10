@@ -65,6 +65,7 @@
                             <TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
                               <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Customer" />
                               <TableColumn fx:id="phoneColumn" prefWidth="75.0" text="Phone" />
+                              <TableColumn fx:id="gstnCodeColumn" prefWidth="75.0" text="GSTN" />
                               <TableColumn fx:id="addressColumn" prefWidth="75.0" text="Billing Address" />
                               <TableColumn fx:id="saddressColumn" prefWidth="75.0" text="Shipping Address" />
                           </columns>

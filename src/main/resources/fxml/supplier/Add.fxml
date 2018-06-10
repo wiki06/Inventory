@@ -50,34 +50,41 @@
               <rowConstraints>
                 <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Company Name" GridPane.halignment="RIGHT" />
-                  <Label text="Billing Address" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <Label text="Billing Address" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
                   <TextField fx:id="supplierField" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextArea fx:id="addressArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextArea fx:id="addressArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </TextArea>
-                  <Label text="Phone" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                  <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label text="GSTN" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Label layoutX="67.0" layoutY="172.0" text="shipping address" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                  <TextArea fx:id="saddressArea" layoutX="120.0" layoutY="130.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label layoutX="67.0" layoutY="172.0" text="shipping address" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                  <TextArea fx:id="saddressArea" layoutX="120.0" layoutY="130.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </TextArea>
+                  <Label layoutX="76.0" layoutY="147.0" text="Phone" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                  <TextField fx:id="gstnCode" layoutX="120.0" layoutY="143.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
                </children>
             </GridPane>
          </children>

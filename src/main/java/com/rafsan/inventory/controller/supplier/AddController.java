@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class AddController implements Initializable, SupplierInterface {
 
     @FXML
-    private TextField supplierField, phoneField;
+    private TextField supplierField, phoneField,gstnCode;
     @FXML
     private TextArea addressArea,saddressArea;
     @FXML
@@ -36,6 +36,7 @@ public class AddController implements Initializable, SupplierInterface {
         phoneField.setText("");
         addressArea.setText("");
         saddressArea.setText("");
+        gstnCode.setText("");
     }
 
     @FXML
@@ -47,7 +48,7 @@ public class AddController implements Initializable, SupplierInterface {
                     supplierField.getText(),
                     phoneField.getText(),
                     addressArea.getText(),
-                    saddressArea.getText(),""
+                    saddressArea.getText(),gstnCode.getText()
             );
 
             supplierModel.saveSuplier(supplier);

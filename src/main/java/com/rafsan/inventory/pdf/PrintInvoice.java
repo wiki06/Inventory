@@ -1,6 +1,5 @@
 package com.rafsan.inventory.pdf;
 
-import com.app.util.NumberToWords;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -512,7 +511,7 @@ public class PrintInvoice {
 		pdfPCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 	          p = new Phrase();
 	        		 p.add(new Chunk("Banker : ",headerFont));
-	        		 p.add(new Chunk("INDIAN BANK",dataFont));
+	        		 p.add(new Chunk("TMB Ltd.,",dataFont));
 	        		 pdfPCell.setPhrase(p);
 	        		 table.addCell(pdfPCell);
 	        		 
@@ -520,7 +519,7 @@ public class PrintInvoice {
 		pdfPCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 	          p = new Phrase();
 	        		 p.add(new Chunk("Bank A/C : ",headerFont));
-	        		 p.add(new Chunk("6090332072",dataFont));
+	        		 p.add(new Chunk("193150050800264",dataFont));
 	        		 pdfPCell.setPhrase(p);
 	        		 table.addCell(pdfPCell);
 	        		 
@@ -528,7 +527,7 @@ public class PrintInvoice {
 		pdfPCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 	          p = new Phrase();
 	        		 p.add(new Chunk("Bank IFSC : ",headerFont));
-	        		 p.add(new Chunk("IDIB000K012",dataFont));
+	        		 p.add(new Chunk("TMBL0000193",dataFont));
 	        		 pdfPCell.setPhrase(p);
 	        		 table.addCell(pdfPCell);
 	        		        		 
@@ -536,7 +535,15 @@ public class PrintInvoice {
 		pdfPCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 	          p = new Phrase();
 	        		 p.add(new Chunk("Branch : ",headerFont));
-	        		 p.add(new Chunk("KANCHEEPURAM",dataFont));
+	        		 p.add(new Chunk("Arakkonam",dataFont));
+	        		 pdfPCell.setPhrase(p);
+	        		 table.addCell(pdfPCell);
+	     
+	        		 pdfPCell = new PdfPCell();
+	        		 pdfPCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+	        		 p = new Phrase();
+	        		 p.add(new Chunk("MICR Code : ",headerFont));
+	        		 p.add(new Chunk("631060102",dataFont));
 	        		 pdfPCell.setPhrase(p);
 	        		 table.addCell(pdfPCell);
 	        		 
