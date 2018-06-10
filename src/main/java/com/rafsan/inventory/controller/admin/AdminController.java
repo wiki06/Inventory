@@ -130,7 +130,7 @@ public class AdminController implements Initializable {
         
         for(Product p : productModel.getProducts()){
         
-            lists.add(new PieChart.Data(p.getProductName(), p.getQuantity()));
+            lists.add(new PieChart.Data(p.getProductName()+" / "+p.getQuantity(), p.getQuantity()));
         }
         
         stockChart.getData().addAll(lists);
