@@ -57,6 +57,7 @@ public class ConfirmController implements Initializable {
     @FXML
     public void doneAction(ActionEvent event) {
         billingArea.setText("");
+        System.out.println("Icalled success item --->"+items.get(0).getHsncode());
         PrintInvoice pi = new PrintInvoice(items, barcode, invoiceId, supplier);
         pi.generateReport();
         ((Node) (event.getSource())).getScene().getWindow().hide();

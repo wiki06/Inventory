@@ -10,6 +10,7 @@ public class Item {
     private double sgst;
     private double cgstPer;
     private double sgstPer;
+    private String hsncode;
 
     public Item() {
     }
@@ -28,6 +29,7 @@ public class Item {
                 ", total=" + total + 
                 ", cgst=" + cgst+
                 ", sgst=" + sgst+
+                ",hsncode=" + hsncode+
                 ", cgstPer=" + cgstPer+
                 ", cgstPer=" + sgstPer+'}';
     }
@@ -96,7 +98,15 @@ public class Item {
 		this.sgstPer = sgstPer;
 	}
 
-	public Item(String itemName, double unitPrice, double quantity, double total, double cgst, double sgst, double cgstPer, double sgstPer) {
+	public String getHsncode() {
+		return hsncode;
+	}
+
+	public void setHsncode(String hsncode) {
+		this.hsncode = hsncode;
+	}
+
+	public Item(String itemName, double unitPrice, double quantity, double total, double cgst, double sgst, double cgstPer, double sgstPer, String hsncode) {
 		super();
 		this.itemName = itemName;
 		this.unitPrice = unitPrice;
@@ -106,5 +116,6 @@ public class Item {
 		this.sgst = sgst;
 		this.cgstPer = cgstPer;
 		this.sgstPer = sgstPer;
+		this.hsncode = hsncode;
 	}
 }

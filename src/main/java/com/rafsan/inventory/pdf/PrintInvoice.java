@@ -1,5 +1,6 @@
 package com.rafsan.inventory.pdf;
 
+import com.app.util.NumberToWords;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -48,7 +49,7 @@ public class PrintInvoice {
 
         try {
         	Document document = new Document();
-            FileOutputStream fs = new FileOutputStream("Report.pdf");
+            FileOutputStream fs = new FileOutputStream("Report_"+invoiceId+".pdf");
             PdfWriter writer = PdfWriter.getInstance(document, fs);
             document.open();
             
@@ -131,7 +132,7 @@ public class PrintInvoice {
 	      pdfPCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 	        		 p = new Phrase();
 	        		 p.add(new Chunk("Transport Mode : ",headerFont));
-	        		 p.add(new Chunk("Sample",dataFont));
+	        		 p.add(new Chunk(" -- ",dataFont));
 	        		 pdfPCell.setPhrase(p);
 	        		 table.addCell(pdfPCell);
 	        		 
@@ -148,7 +149,7 @@ public class PrintInvoice {
 	      pdfPCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 	        		 p = new Phrase();
 	        		 p.add(new Chunk("Vehicle Number : ",headerFont));
-	        		 p.add(new Chunk("565656",dataFont));
+	        		 p.add(new Chunk(" -- ",dataFont));
 	        		 pdfPCell.setPhrase(p);
 	        		 table.addCell(pdfPCell);
 	        		 
@@ -248,7 +249,7 @@ public class PrintInvoice {
 		pdfPCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 	               p = new Phrase();
 	        		 p.add(new Chunk("GSTIN : ",headerFont));
-	        		 p.add(new Chunk("GET7878788",dataFont));
+	        		 p.add(new Chunk(this.supplier.getGstnnumber(),dataFont));
 	        		 pdfPCell.setPhrase(p);
 	        		 table.addCell(pdfPCell);
       
@@ -257,7 +258,7 @@ public class PrintInvoice {
 		pdfPCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 	               p = new Phrase();
 	        		 p.add(new Chunk("GSTIN : ",headerFont));
-	        		 p.add(new Chunk("GET7878788",dataFont));
+	        		 p.add(new Chunk(this.supplier.getGstnnumber(),dataFont));
 	        		 pdfPCell.setPhrase(p);
 	        		 table.addCell(pdfPCell);
 	        		 
@@ -297,12 +298,6 @@ public class PrintInvoice {
 		
 		createProductHeader(table, headerList);
 		
-		/*List<String> dataList = Arrays.asList("1", "AACHI WATER 1LT", "78787889", "2", "100",
-				"5.00 %", "05.00", "5.00 %", "05.00", "110.00");
-		
-		List<String> dataList1 = Arrays.asList("2", "AACHI WATER 1LT", "78787889", "2", "100",
-				"5.00 %", "05.00", "5.00 %", "05.00", "110.00");*/
-		
 		
 		PdfPCell pdfPCell = null;
 		
@@ -332,7 +327,7 @@ public class PrintInvoice {
       		pdfPCell = new PdfPCell();
     		pdfPCell.setBorder(Rectangle.RIGHT);
     		p = new Phrase();
-    		p.add(new Chunk(""+item.getTotal(), font));
+    		p.add(new Chunk(""+item.getHsncode(), font));
     		pdfPCell.setPhrase(p);
           		table.addCell(pdfPCell);
           		
@@ -389,24 +384,6 @@ public class PrintInvoice {
       		grandTotal = grandTotal+item.getTotal();
         }
 		
-		/*for(String data : dataList) {
-			 pdfPCell = new PdfPCell();
-	    		pdfPCell.setBorder(Rectangle.RIGHT);
-	    		p = new Phrase();
-	    		p.add(new Chunk(data, new Font(FontFamily.HELVETICA, 8)));
-	    		pdfPCell.setPhrase(p);
-	          		table.addCell(pdfPCell);
-		}
-		
-		for(String data : dataList1) {
-			 pdfPCell = new PdfPCell();
-	    		pdfPCell.setBorder(Rectangle.RIGHT);
-	    		p = new Phrase();
-	    		p.add(new Chunk(data, new Font(FontFamily.HELVETICA, 8)));
-	    		pdfPCell.setPhrase(p);
-	          		table.addCell(pdfPCell);
-		}*/
-		
 		
 		
 		return table;
@@ -453,10 +430,12 @@ public class PrintInvoice {
 	   	        		 pdfPCell.setPhrase(p);
 	   	        		 table.addCell(pdfPCell);
 	   	        		 
+	   	  String grandTotalWords = getGrandTotalWords(grandTotal);
+	   	        		 
       	  pdfPCell = new PdfPCell();
 	   		  pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 	   	          p = new Phrase();
-	   	        		 p.add(new Chunk("Rupees FourtyFive Thousand Two Hundred SixtyNine only",font));
+	   	        		 p.add(new Chunk(grandTotalWords,font));
 	   	        		 pdfPCell.setPhrase(p);
 	   	        		 table.addCell(pdfPCell);
 	   		   	        		 
@@ -578,5 +557,53 @@ public class PrintInvoice {
 		Date date = new Date();  
 	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
 		return formatter.format(date);
+	}
+	
+	private String getGrandTotalWords(double grandTotal) {
+		StringBuilder sb = new StringBuilder("Rupees ");
+		int n = (int) Math.round(grandTotal);
+		if (n <= 0)
+		{
+			System.out.println("Enter numbers greater than 0");
+		}
+		else
+		{
+			sb.append(pw((n / 1000000000), " Hundred"));
+			sb.append(pw((n / 10000000) % 100, " crore"));
+			sb.append(pw(((n / 100000) % 100), " lakh"));
+			sb.append(pw(((n / 1000) % 100), " thousand"));
+			sb.append(pw(((n / 100) % 10), " hundred"));
+			sb.append(pw((n % 100), " "));
+		}
+		
+		if(sb.toString().trim().length() > 7) {
+			sb.append(" Only ");
+		}
+		
+		return sb.toString();
+	}
+	
+	private String pw(int n, String ch)
+	{
+		StringBuilder sb = new StringBuilder();
+		
+		String one[] = { " ", " One", " Two", " Three", " Four", " Five", " Six", " Seven", " Eight", " Nine", " Ten",
+				" Eleven", " Twelve", " Thirteen", " Fourteen", "Fifteen", " Sixteen", " Seventeen", " Eighteen",
+				" Nineteen" };
+ 
+		String ten[] = { " ", " ", " Twenty", " Thirty", " Forty", " Fifty", " Sixty", "Seventy", " Eighty", " Ninety" };
+ 
+		if (n > 19)
+		{
+			sb.append(ten[n / 10] + " " + one[n % 10]);
+		}
+		else
+		{
+			sb.append(one[n]);
+		}
+		if (n > 0)
+			sb.append(ch);
+		
+		return sb.toString();
 	}
 }

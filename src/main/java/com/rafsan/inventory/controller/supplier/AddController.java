@@ -47,7 +47,7 @@ public class AddController implements Initializable, SupplierInterface {
                     supplierField.getText(),
                     phoneField.getText(),
                     addressArea.getText(),
-                    saddressArea.getText()
+                    saddressArea.getText(),""
             );
 
             supplierModel.saveSuplier(supplier);

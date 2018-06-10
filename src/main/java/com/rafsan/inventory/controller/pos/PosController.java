@@ -55,7 +55,7 @@ public class PosController implements Initializable, ProductInterface {
     @FXML
     private TextArea descriptionArea;
     @FXML
-    private TextField subTotalField, discountField, cgstField,sgstField, netPayableField;
+    private TextField subTotalField, discountField, cgstField,sgstField, netPayableField, hsnCodeField;
     @FXML
     private Button addButton, removeButton, paymentButton, resetButton;
     @FXML
@@ -75,7 +75,6 @@ public class PosController implements Initializable, ProductInterface {
         productModel = new ProductModel();
 
         loadData();
-
         productColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         productTableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showDetails(newValue));
@@ -143,6 +142,7 @@ public class PosController implements Initializable, ProductInterface {
             priceField.setText(String.valueOf(product.getPrice()));
             cgstField.setText(String.valueOf(product.getCgst()));
             sgstField.setText(String.valueOf(product.getSgst()));
+            hsnCodeField.setText(product.getHsncode());
             double quantity = product.getQuantity();
 
             if (quantity > 0) {
@@ -229,7 +229,7 @@ public class PosController implements Initializable, ProductInterface {
             double sgst = (Double.valueOf(sgstField.getText()) / 100) * subtotal;
             double total = subtotal + cgst + sgst;
             ITEMLIST.add(new Item(productName, unitPrice, quantity, Double.valueOf(df2.format(total)),
-            		Double.valueOf(df2.format(cgst)),Double.valueOf(df2.format(sgst)), cgstper, sgstper));
+            		Double.valueOf(df2.format(cgst)),Double.valueOf(df2.format(sgst)), cgstper, sgstper, hsnCodeField.getText()));
             calculation();
 
             resetAdd();

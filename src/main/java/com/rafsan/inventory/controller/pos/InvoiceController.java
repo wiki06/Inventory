@@ -35,7 +35,7 @@ import javafx.stage.Stage;
 public class InvoiceController implements Initializable {
 
     @FXML
-    private TextField totalAmountField, paidAmountField;
+    private TextField totalAmountField/*, paidAmountField*/;
     private double netPrice;
     private ObservableList<Item> items;
     private EmployeeModel employeeModel;
@@ -76,7 +76,8 @@ public class InvoiceController implements Initializable {
     public void confirmAction(ActionEvent event) throws Exception {
 
         if (validateInput()) {
-            double paid = Double.parseDouble(paidAmountField.getText().trim());
+            /*double paid = Double.parseDouble(paidAmountField.getText().trim());*/
+        	double paid = 0.0;
             double retail = Math.abs(paid - netPrice);
             
             Supplier supplier = supplierModel.getSupplier(customerComboBox.getSelectionModel().getSelectedIndex() + 1);
@@ -142,11 +143,11 @@ public class InvoiceController implements Initializable {
 
         String errorMessage = "";
 
-        if (paidAmountField.getText() == null || paidAmountField.getText().length() == 0) {
+        /*if (paidAmountField.getText() == null || paidAmountField.getText().length() == 0) {
             errorMessage += "Invalid Input!\n";
         } else if (Double.parseDouble(paidAmountField.getText()) < netPrice) {
             errorMessage += "Insufficient Input!\n";
-        }
+        }*/
 
         if (errorMessage.length() == 0) {
             return true;
@@ -156,7 +157,7 @@ public class InvoiceController implements Initializable {
             alert.setHeaderText("Please input the valid amount");
             alert.setContentText(errorMessage);
             alert.showAndWait();
-            paidAmountField.setText("");
+            /*paidAmountField.setText("");*/
 
             return false;
         }

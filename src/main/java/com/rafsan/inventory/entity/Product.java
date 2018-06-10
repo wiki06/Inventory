@@ -215,6 +215,7 @@ public class Product implements Serializable {
                 ", category=" + category + 
                 ", cgst="+cgst+
                 ", sgst="+sgst+
+                ",hsncode="+hsncode+
                 ", cgstPer="+cgstPer+
                 ", sgstPer="+sgstPer+
                 '}';

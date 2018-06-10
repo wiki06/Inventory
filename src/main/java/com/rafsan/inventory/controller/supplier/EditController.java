@@ -68,7 +68,7 @@ public class EditController implements Initializable, SupplierInterface {
                     supplier.getId(),
                     supplierField.getText(),
                     phoneField.getText(),
-                    addressArea.getText(),saddressArea.getText()
+                    addressArea.getText(),saddressArea.getText(),""
             );
 
             supplierModel.updateSuplier(editedSupplier);

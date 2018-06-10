@@ -196,6 +196,7 @@
                                     <TextField fx:id="discountField" alignment="CENTER_RIGHT" editable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="120.0" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                                     <TextField fx:id="netPayableField" alignment="CENTER_RIGHT" editable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="120.0" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                                     <TextField fx:id="sgstField" alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="120.0" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField visible="false" fx:id="hsnCodeField"></TextField>
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
