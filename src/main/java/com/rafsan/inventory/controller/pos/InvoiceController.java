@@ -9,6 +9,7 @@ import com.rafsan.inventory.entity.Item;
 import com.rafsan.inventory.entity.Payment;
 import com.rafsan.inventory.entity.Product;
 import com.rafsan.inventory.entity.Sale;
+import com.rafsan.inventory.entity.Supplier;
 import com.rafsan.inventory.model.EmployeeModel;
 import com.rafsan.inventory.model.InvoiceModel;
 import com.rafsan.inventory.model.ProductModel;
@@ -34,7 +35,7 @@ import javafx.stage.Stage;
 public class InvoiceController implements Initializable {
 
     @FXML
-    private TextField totalAmountField, paidAmountField;
+    private TextField totalAmountField/*, paidAmountField*/;
     private double netPrice;
     private ObservableList<Item> items;
     private EmployeeModel employeeModel;
@@ -75,8 +76,11 @@ public class InvoiceController implements Initializable {
     public void confirmAction(ActionEvent event) throws Exception {
 
         if (validateInput()) {
-            double paid = Double.parseDouble(paidAmountField.getText().trim());
+            /*double paid = Double.parseDouble(paidAmountField.getText().trim());*/
+        	double paid = 0.0;
             double retail = Math.abs(paid - netPrice);
+            
+            Supplier supplier = supplierModel.getSupplier(customerComboBox.getSelectionModel().getSelectedIndex() + 1);
 
             String invoiceId = String.valueOf(new Timestamp(System.currentTimeMillis()).getTime());
 
@@ -114,7 +118,7 @@ public class InvoiceController implements Initializable {
 
             FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/Confirm.fxml")));
             ConfirmController controller = new ConfirmController();
-            controller.setData(retail, items, invoiceId);
+            controller.setData(retail, items, invoiceId, supplier);
             loader.setController(controller);
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -139,11 +143,11 @@ public class InvoiceController implements Initializable {
 
         String errorMessage = "";
 
-        if (paidAmountField.getText() == null || paidAmountField.getText().length() == 0) {
+        /*if (paidAmountField.getText() == null || paidAmountField.getText().length() == 0) {
             errorMessage += "Invalid Input!\n";
         } else if (Double.parseDouble(paidAmountField.getText()) < netPrice) {
             errorMessage += "Insufficient Input!\n";
-        }
+        }*/
 
         if (errorMessage.length() == 0) {
             return true;
@@ -153,7 +157,7 @@ public class InvoiceController implements Initializable {
             alert.setHeaderText("Please input the valid amount");
             alert.setContentText(errorMessage);
             alert.showAndWait();
-            paidAmountField.setText("");
+            /*paidAmountField.setText("");*/
 
             return false;
         }

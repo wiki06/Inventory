@@ -1,6 +1,7 @@
 package com.rafsan.inventory.controller.pos;
 
 import com.rafsan.inventory.entity.Item;
+import com.rafsan.inventory.entity.Supplier;
 import com.rafsan.inventory.pdf.PrintInvoice;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +23,8 @@ public class ConfirmController implements Initializable {
     private double retail;
     private ObservableList<Item> items;
     private String barcode;
+    private String invoiceId;
+    private Supplier supplier;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -43,16 +46,19 @@ public class ConfirmController implements Initializable {
         billingArea.setText(details.toString());
     }
 
-    public void setData(double retail, ObservableList<Item> items, String barcode) {
+    public void setData(double retail, ObservableList<Item> items, String barcode, Supplier supplier) {
         this.retail = retail;
         this.items = FXCollections.observableArrayList(items);
         this.barcode = barcode;
+        this.invoiceId = barcode;
+        this.supplier = supplier;
     }
 
     @FXML
     public void doneAction(ActionEvent event) {
         billingArea.setText("");
-        PrintInvoice pi = new PrintInvoice(items, barcode);
+        System.out.println("Icalled success item --->"+items.get(0).getHsncode());
+        PrintInvoice pi = new PrintInvoice(items, barcode, invoiceId, supplier);
         pi.generateReport();
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }

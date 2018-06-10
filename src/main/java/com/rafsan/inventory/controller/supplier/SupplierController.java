@@ -39,7 +39,7 @@ public class SupplierController implements Initializable, SupplierInterface {
     @FXML
     private TableColumn<Supplier, Long> idColumn;
     @FXML
-    private TableColumn<Supplier, String> nameColumn, phoneColumn, addressColumn;
+    private TableColumn<Supplier, String> nameColumn, phoneColumn, addressColumn, saddressColumn;
     @FXML
     private TextField searchField;
     @FXML
@@ -65,7 +65,7 @@ public class SupplierController implements Initializable, SupplierInterface {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
-
+        saddressColumn.setCellValueFactory(new PropertyValueFactory<>("saddress"));
         supplierTable.setItems(SUPPLIERLIST);
 
         filterData();

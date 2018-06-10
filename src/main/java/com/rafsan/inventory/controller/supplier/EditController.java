@@ -20,7 +20,7 @@ public class EditController implements Initializable, SupplierInterface {
     @FXML
     private TextField supplierField, phoneField;
     @FXML
-    private TextArea addressArea;
+    private TextArea addressArea,saddressArea;
     @FXML
     private Button saveButton;
     private long selectedSupplierId;
@@ -38,6 +38,7 @@ public class EditController implements Initializable, SupplierInterface {
         supplierField.setText("");
         phoneField.setText("");
         addressArea.setText("");
+        saddressArea.setText("");
     }
     
     public void setSupplier(Supplier supplier, long selectedSupplierId){
@@ -50,6 +51,7 @@ public class EditController implements Initializable, SupplierInterface {
         supplierField.setText(supplier.getName());
         phoneField.setText(supplier.getPhone());
         addressArea.setText(supplier.getAddress());
+        saddressArea.setText(supplier.getSaddress());
     }
 
     @FXML
@@ -66,7 +68,7 @@ public class EditController implements Initializable, SupplierInterface {
                     supplier.getId(),
                     supplierField.getText(),
                     phoneField.getText(),
-                    addressArea.getText()
+                    addressArea.getText(),saddressArea.getText(),""
             );
 
             supplierModel.updateSuplier(editedSupplier);

@@ -51,10 +51,11 @@
                 <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Company Name" GridPane.halignment="RIGHT" />
-                  <Label text="Address" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                  <Label text="Billing Address" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                   <TextField fx:id="supplierField" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets right="10.0" />
@@ -71,6 +72,12 @@
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </TextField>
+                  <Label layoutX="67.0" layoutY="172.0" text="shipping address" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                  <TextArea fx:id="saddressArea" layoutX="120.0" layoutY="130.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </TextArea>
                </children>
             </GridPane>
          </children>
