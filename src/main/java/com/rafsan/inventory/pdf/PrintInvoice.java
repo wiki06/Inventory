@@ -21,6 +21,7 @@ import com.rafsan.inventory.entity.Supplier;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -287,7 +288,7 @@ public class PrintInvoice {
 		PdfPTable table = new PdfPTable(10);
 		
 		try {
-			table.setWidths(new float[]{0.3f, 1.0f, 0.5f, 0.2f, 0.4f, 0.3f, 0.4f, 0.3f, 0.4f, 0.5f});
+			table.setWidths(new float[]{0.3f, 1.0f, 0.5f, 0.3f, 0.4f, 0.3f, 0.4f, 0.3f, 0.4f, 0.5f});
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -333,7 +334,7 @@ public class PrintInvoice {
       		pdfPCell = new PdfPCell();
     		pdfPCell.setBorder(Rectangle.RIGHT);
     		p = new Phrase();
-    		p.add(new Chunk(""+item.getQuantity(), font));
+    		p.add(new Chunk(new DecimalFormat("").format(item.getQuantity()), font));
     		pdfPCell.setPhrase(p);
           		table.addCell(pdfPCell);
           		
