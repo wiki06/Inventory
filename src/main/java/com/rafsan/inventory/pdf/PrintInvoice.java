@@ -10,6 +10,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.BarcodeEAN;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -37,6 +38,7 @@ public class PrintInvoice {
     private final String invoiceId;
     private final Supplier supplier;
     private double grandTotal;
+    
 
     public PrintInvoice(ObservableList<Item> items, String barcode, String invoiceId, Supplier supplier) {
         this.items = FXCollections.observableArrayList(items);
@@ -48,7 +50,7 @@ public class PrintInvoice {
     public void generateReport() {
 
         try {
-        	Document document = new Document();
+        	Document document = new Document(PageSize.A4);
             FileOutputStream fs = new FileOutputStream("Report_"+invoiceId+".pdf");
             PdfWriter writer = PdfWriter.getInstance(document, fs);
             document.open();
@@ -71,6 +73,8 @@ public class PrintInvoice {
             table.addCell(getEmptyRow());
             
             table.addCell(getProductDetail());
+            
+            table.addCell(getEmptyRow());
             
             table.addCell(getGrandTotal());
             
@@ -102,10 +106,10 @@ public class PrintInvoice {
 	
 	private PdfPCell getEmptyRow() {
 		PdfPCell pdfPCell = new PdfPCell();
-		pdfPCell = new PdfPCell();
 		pdfPCell.setFixedHeight(6f);
        return pdfPCell;
 	}
+	
 	
 	private PdfPCell getSingleRowWithData(String text) {
 		PdfPCell pdfPCell = new PdfPCell(new Phrase(text, new Font(FontFamily.HELVETICA, 12, Font.BOLD)));
@@ -287,6 +291,7 @@ public class PrintInvoice {
 			
 		PdfPTable table = new PdfPTable(10);
 		
+		
 		try {
 			table.setWidths(new float[]{0.3f, 1.0f, 0.5f, 0.3f, 0.4f, 0.3f, 0.4f, 0.3f, 0.4f, 0.5f});
 		} catch (DocumentException e) {
@@ -310,6 +315,7 @@ public class PrintInvoice {
 		for (Item item : items) {
 			
 			pdfPCell = new PdfPCell();
+			pdfPCell.setFixedHeight(20f);
     		pdfPCell.setBorder(Rectangle.RIGHT);
     		p = new Phrase();
     		p.add(new Chunk(""+itemCount, font));
@@ -385,6 +391,17 @@ public class PrintInvoice {
         }
 		
 		
+		if(itemCount<=15) {
+			for(int i = 1; i<=10; i++) {
+				float space = 320-(itemCount*20);
+				 pdfPCell = new PdfPCell();
+				pdfPCell.setBorder(Rectangle.RIGHT);
+				pdfPCell.setFixedHeight(space);
+				table.addCell(pdfPCell);
+			}
+		}
+		
+		
 		
 		return table;
 	}
@@ -426,9 +443,33 @@ public class PrintInvoice {
 	    	  pdfPCell = new PdfPCell();
 	   		  pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 	   	          p = new Phrase();
-	   	        		 p.add(new Chunk(""+grandTotal,font));
+	   	        		 p.add(new Chunk(new DecimalFormat(".##").format(grandTotal),font));
 	   	        		 pdfPCell.setPhrase(p);
 	   	        		 table.addCell(pdfPCell);
+	   	        		 
+	    		int n = (int) Math.round(grandTotal);
+	    		float s = n;
+	    		float roundoff = (float) (s-grandTotal);
+	    		
+	    	 pdfPCell = new PdfPCell();
+			 pdfPCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+		          p = new Phrase();
+		        		 p.add(new Chunk("Round off ",font));
+		        		 pdfPCell.setPhrase(p);
+		        		 table.addCell(pdfPCell);
+		        		 
+		        		 String symbol = "(+) ";
+		        		 
+		        		 if(Math.signum(roundoff) == -1.0)
+		        			 symbol = "(-) ";
+		        		 
+	    	  pdfPCell = new PdfPCell();
+	   		  pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+	   	          p = new Phrase();
+	   	        		 p.add(new Chunk(symbol + "0"+new DecimalFormat(".##").format(Math.abs(roundoff)),font));
+	   	        		 pdfPCell.setPhrase(p);
+	   	        		 table.addCell(pdfPCell);
+	   	        		
 	   	        		 
 	   	  String grandTotalWords = getGrandTotalWords(grandTotal);
 	   	        		 
@@ -576,16 +617,16 @@ public class PrintInvoice {
 		}
 		else
 		{
-			sb.append(pw((n / 1000000000), " Hundred"));
-			sb.append(pw((n / 10000000) % 100, " crore"));
-			sb.append(pw(((n / 100000) % 100), " lakh"));
-			sb.append(pw(((n / 1000) % 100), " thousand"));
-			sb.append(pw(((n / 100) % 10), " hundred"));
+			sb.append(pw((n / 1000000000), "Hundred "));
+			sb.append(pw((n / 10000000) % 100, "crore "));
+			sb.append(pw(((n / 100000) % 100), "lakh "));
+			sb.append(pw(((n / 1000) % 100), "thousand "));
+			sb.append(pw(((n / 100) % 10), "hundred "));
 			sb.append(pw((n % 100), " "));
 		}
 		
-		if(sb.toString().trim().length() > 7) {
-			sb.append(" Only ");
+		if(sb.toString().trim().length() > 6) {
+			sb.append("Only ");
 		}
 		
 		return sb.toString();
@@ -595,15 +636,15 @@ public class PrintInvoice {
 	{
 		StringBuilder sb = new StringBuilder();
 		
-		String one[] = { " ", " One", " Two", " Three", " Four", " Five", " Six", " Seven", " Eight", " Nine", " Ten",
-				" Eleven", " Twelve", " Thirteen", " Fourteen", "Fifteen", " Sixteen", " Seventeen", " Eighteen",
-				" Nineteen" };
+		String one[] = { "", "One ", "Two ", "Three ", "Four ", "Five ", "Six ", "Seven ", "Eight ", "Nine ", "Ten ",
+				"Eleven ", "Twelve ", "Thirteen ", "Fourteen ", "Fifteen ", "Sixteen ", "Seventeen ", "Eighteen ",
+				"Nineteen " };
  
-		String ten[] = { " ", " ", " Twenty", " Thirty", " Forty", " Fifty", " Sixty", "Seventy", " Eighty", " Ninety" };
+		String ten[] = { "", "", "Twenty ", "Thirty ", "Forty ", "Fifty ", "Sixty ", "Seventy ", "Eighty ", "Ninety " };
  
 		if (n > 19)
 		{
-			sb.append(ten[n / 10] + " " + one[n % 10]);
+			sb.append((ten[n / 10] + "" + one[n % 10]));
 		}
 		else
 		{
@@ -611,7 +652,6 @@ public class PrintInvoice {
 		}
 		if (n > 0)
 			sb.append(ch);
-		
 		return sb.toString();
 	}
 }
