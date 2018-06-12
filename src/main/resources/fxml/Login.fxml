@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -25,12 +26,10 @@
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </padding>
          <children>
-            <Label alignment="CENTER" prefHeight="35.0" prefWidth="273.0" styleClass="tagline" text="Quality is the best business plan" />
-            <Label prefHeight="42.0" prefWidth="134.0" styleClass="tagline" text="We deal in that!">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
+            <Label alignment="CENTER" prefHeight="35.0" prefWidth="342.0" styleClass="tagline" text="SREE SIVA SAKTHI ENTERPRISES">
+               <font>
+                  <Font size="36.0" />
+               </font></Label>
             <ImageView fitHeight="392.0" fitWidth="328.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/box.png" />

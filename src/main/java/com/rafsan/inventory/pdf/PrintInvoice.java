@@ -51,7 +51,7 @@ public class PrintInvoice {
 
         try {
         	Document document = new Document(PageSize.A4);
-            FileOutputStream fs = new FileOutputStream("Report_"+invoiceId+".pdf");
+            FileOutputStream fs = new FileOutputStream("C:/Invoice/Report_"+invoiceId+".pdf");
             PdfWriter writer = PdfWriter.getInstance(document, fs);
             document.open();
             
@@ -95,7 +95,7 @@ public class PrintInvoice {
 		  pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        
 	         Phrase p = new Phrase();
-	        		 p.add(new Chunk("SREE SIVA SAKTHI ENTERPRIES \n",new Font(FontFamily.HELVETICA, 15, Font.BOLD)));
+	        		 p.add(new Chunk("SREE SIVA SAKTHI ENTERPRISES \n",new Font(FontFamily.HELVETICA, 15, Font.BOLD)));
 	        		 p.add(new Chunk("KRISHNA NAGAR, ARIKALAPADI, ARAKKONAM Tk., Vellore Dist, \n", new Font(FontFamily.HELVETICA, 11, Font.BOLD)));
 	        		 p.add(new Chunk("Email : sssenterpriseram@gmail.com",new Font(FontFamily.HELVETICA, 10, Font.BOLD)));
 	         
@@ -162,8 +162,8 @@ public class PrintInvoice {
   	  pdfPCell = new PdfPCell();
  	      pdfPCell.setHorizontalAlignment(Element.ALIGN_LEFT);
  	        		 p = new Phrase();
- 	        		 p.add(new Chunk("Reverse Charge : ",headerFont));
- 	        		 p.add(new Chunk("Y",dataFont));
+ 	        		 p.add(new Chunk("Reverse Charge (Y/N) : ",headerFont));
+ 	        		 p.add(new Chunk("--",dataFont));
  	        		 pdfPCell.setPhrase(p);
  	        		 table.addCell(pdfPCell);
       
@@ -299,7 +299,7 @@ public class PrintInvoice {
 		}
 		
 		List<String> headerList = Arrays.asList("S.no", "Description of Goods", "HSN/SAC Code", "Qty", "MRP",
-				"CGST Rate", "CGST amount", "SGST Rate", "SGST amount", "Amount");
+				"CGST %", "CGST amount", "SGST %", "SGST amount", "Amount");
 		
 		createProductHeader(table, headerList);
 		
@@ -436,7 +436,7 @@ public class PrintInvoice {
 			 PdfPCell pdfPCell = new PdfPCell();
 			 pdfPCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		         Phrase p = new Phrase();
-		        		 p.add(new Chunk("Grand Total ",font));
+		        		 p.add(new Chunk("Total ",font));
 		        		 pdfPCell.setPhrase(p);
 		        		 table.addCell(pdfPCell);
 		        		 
@@ -467,6 +467,21 @@ public class PrintInvoice {
 	   		  pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 	   	          p = new Phrase();
 	   	        		 p.add(new Chunk(symbol + "0"+new DecimalFormat(".##").format(Math.abs(roundoff)),font));
+	   	        		 pdfPCell.setPhrase(p);
+	   	        		 table.addCell(pdfPCell);
+	   	        		 
+	   	        		 
+        	 pdfPCell = new PdfPCell();
+			 pdfPCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+		          p = new Phrase();
+		        		 p.add(new Chunk("Grand Total ",font));
+		        		 pdfPCell.setPhrase(p);
+		        		 table.addCell(pdfPCell);
+		        		 
+	    	  pdfPCell = new PdfPCell();
+	   		  pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+	   	          p = new Phrase();
+	   	        		 p.add(new Chunk(""+n,font));
 	   	        		 pdfPCell.setPhrase(p);
 	   	        		 table.addCell(pdfPCell);
 	   	        		
@@ -514,7 +529,7 @@ public class PrintInvoice {
 	    pdfPCell.setBorder(Rectangle.NO_BORDER);
 	    pdfPCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 	    Phrase p = new Phrase();
-		 p.add(new Chunk("\n\n\n\n\n\n\n\n\n\n\n\n"));
+		 p.add(new Chunk("\n\n\n\n\n\n\n\n\n\n\n"));
 		p.add(new Chunk("Common Seal",new Font(FontFamily.HELVETICA, 10, Font.BOLD)));
 		pdfPCell.setPhrase(p);
      		table.addCell(pdfPCell);	 
@@ -522,8 +537,8 @@ public class PrintInvoice {
 	    pdfPCell = new PdfPCell();
 	    pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 	    p = new Phrase();
-	    p.add(new Chunk("Certified that the particulars given above are true and correct\n\n"));
-	    p.add(new Chunk("For Real food products\n",font));
+	    p.add(new Chunk("Certified that the particulars given above are true and correct\n\n\n\n\n", new Font(FontFamily.HELVETICA, 7)));
+	    p.add(new Chunk("For Sree Siva Sakthi Enterprises\n",font));
 	    p.add(new Chunk("\n\n\n\n\n\n\n"));
 	    p.add(new Chunk("Authorised signatory",font));
 	    pdfPCell.setPhrase(p);
@@ -545,7 +560,7 @@ public class PrintInvoice {
 		pdfPCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 	         Phrase p = new Phrase();
 	        		 p.add(new Chunk("Bank Details : ",headerFont));
-	        		 p.add(new Chunk("REAL FOOD PRODUCTS",dataFont));
+	        		 p.add(new Chunk("SREE SIVA SAKTHI ENTERPRISES",dataFont));
 	        		 pdfPCell.setPhrase(p);
 	        		 table.addCell(pdfPCell);
 	        		 
@@ -593,9 +608,9 @@ public class PrintInvoice {
 		pdfPCell.setHorizontalAlignment(Element.ALIGN_LEFT);
 	          p = new Phrase();
 	        		 p.add(new Chunk("Terms & Conditions \n\n",headerFont));
-	        		 p.add(new Chunk("1. Goods sold once will not be taken back.\n\n",headerFont));
-	        		 p.add(new Chunk("2. Seller is not responsible for any loss or damages of goods in transit.\n\n",headerFont));
-	        		 p.add(new Chunk("3. Subject to Kancheepuram Jurisdiction",headerFont));
+	        		 p.add(new Chunk("1. Goods sold once will not be taken back.\n\n",new Font(FontFamily.HELVETICA, 7)));
+	        		 p.add(new Chunk("2. Seller is not responsible for any loss or damages of goods in transit.\n\n",new Font(FontFamily.HELVETICA, 7)));
+	        		 p.add(new Chunk("3. Subject to Arakkonam Jurisdiction",new Font(FontFamily.HELVETICA, 7)));
 	        		 pdfPCell.setPhrase(p);
 	        		 table.addCell(pdfPCell);
 	        		 

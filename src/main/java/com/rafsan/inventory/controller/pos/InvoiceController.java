@@ -1,5 +1,6 @@
 package com.rafsan.inventory.controller.pos;
 
+import java.math.BigInteger;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
@@ -81,8 +82,23 @@ public class InvoiceController implements Initializable {
             double retail = Math.abs(paid - netPrice);
             
             Supplier supplier = supplierModel.getSupplier(customerComboBox.getSelectionModel().getSelectedIndex() + 1);
+            
+            ObservableList<Invoice> list = invoiceModel.getInvoices();
+            
+            String invoiceId = "";
+            
+            if(list.size() > 0) {
+            	 BigInteger number = new BigInteger(list.get(list.size()-1).getId().trim());
+            	 BigInteger one = new BigInteger("1");
+            	 BigInteger id = number.add(one);
+            	 invoiceId = ""+id;
+            }
+            else 
+            	invoiceId = "201801010001";
+            
+            
 
-            String invoiceId = String.valueOf(new Timestamp(System.currentTimeMillis()).getTime());
+            //String invoiceId = String.valueOf(new Timestamp(System.currentTimeMillis()).getTime());
 
             Invoice invoice = new Invoice(
                     invoiceId,
