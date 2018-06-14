@@ -20,6 +20,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.rafsan.inventory.entity.Item;
 import com.rafsan.inventory.entity.Supplier;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
@@ -51,6 +52,10 @@ public class PrintInvoice {
 
         try {
         	Document document = new Document(PageSize.A4);
+        	File directory = new File("c://Invoice");
+    		if(!directory.exists()) {
+    			directory.mkdirs();
+    		}
             FileOutputStream fs = new FileOutputStream("C:/Invoice/Report_"+invoiceId+".pdf");
             PdfWriter writer = PdfWriter.getInstance(document, fs);
             document.open();
@@ -97,7 +102,7 @@ public class PrintInvoice {
 	         Phrase p = new Phrase();
 	        		 p.add(new Chunk("SREE SIVA SAKTHI ENTERPRISES \n",new Font(FontFamily.HELVETICA, 15, Font.BOLD)));
 	        		 p.add(new Chunk("KRISHNA NAGAR, ARIKALAPADI, ARAKKONAM Tk., Vellore Dist, \n", new Font(FontFamily.HELVETICA, 11, Font.BOLD)));
-	        		 p.add(new Chunk("Email : sssenterpriseram@gmail.com",new Font(FontFamily.HELVETICA, 10, Font.BOLD)));
+	        		 p.add(new Chunk("Mobile : +91 94442 78847 / Email : sssenterpriseram@gmail.com",new Font(FontFamily.HELVETICA, 10, Font.BOLD)));
 	         
 	        		 pdfPCell.setPhrase(p);
 		
