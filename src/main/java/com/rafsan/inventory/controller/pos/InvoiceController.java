@@ -156,6 +156,7 @@ public class InvoiceController implements Initializable {
             stage.setScene(scene);
             stage.show();*/
         }
+        ((Node) (event.getSource())).getScene().getWindow().hide();
 
     }
 
