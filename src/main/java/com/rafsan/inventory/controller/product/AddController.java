@@ -85,6 +85,9 @@ public class AddController implements Initializable, ProductInterface {
         priceField.setText("");
         quantityField.setText("");
         descriptionArea.setText("");
+        hsnCode.setText("");
+        cgst.setText("");
+        sgst.setText("");
         categoryBox.valueProperty().setValue(null);
     }
 

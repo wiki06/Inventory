@@ -95,11 +95,11 @@ public class EditController implements Initializable, SupplierInterface {
         }
 
         if (phoneField.getText() == null || phoneField.getText().length() == 0) {
-            errorMessage += "No valid phone number!\n";
+            errorMessage += "No valid GSTN number!\n";
         }
 
         if (addressArea.getText() == null || addressArea.getText().length() == 0) {
-            errorMessage += "No email address!\n";
+            errorMessage += "No Billing address!\n";
         }
 
         if (errorMessage.length() == 0) {

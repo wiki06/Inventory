@@ -113,7 +113,7 @@
 		<HBox alignment="CENTER_RIGHT" prefHeight="30.0" spacing="5.0" styleClass="bottom-bar" VBox.vgrow="NEVER">
 			<children>
 				<Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSave" prefHeight="54.0" prefWidth="120.0" text="Save" />
-				<Button mnemonicParsing="false" onAction="#handleCancel" prefHeight="54.0" prefWidth="120.0" text="Cancel">
+				<Button mnemonicParsing="false" onAction="#handleCancel" prefHeight="54.0" prefWidth="120.0" text="Clear">
 					<HBox.margin>
 						<Insets right="15.0" />
 					</HBox.margin>
