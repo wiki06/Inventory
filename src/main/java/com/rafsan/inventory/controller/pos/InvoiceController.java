@@ -16,6 +16,7 @@ import com.rafsan.inventory.model.InvoiceModel;
 import com.rafsan.inventory.model.ProductModel;
 import com.rafsan.inventory.model.SalesModel;
 import com.rafsan.inventory.model.SupplierModel;
+import com.rafsan.inventory.pdf.PrintInvoice;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -131,13 +132,16 @@ public class InvoiceController implements Initializable {
 
                 salesModel.saveSale(sale);
             }
-
-            FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/Confirm.fxml")));
+            
+            /*FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/Confirm.fxml")));*/
             ConfirmController controller = new ConfirmController();
             controller.setData(retail, items, invoiceId, supplier);
-            loader.setController(controller);
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
+            PrintInvoice pi = new PrintInvoice(items, "", invoiceId, supplier);
+            pi.generateReport();
+            System.out.println("invoice generated");
+           /* loader.setController(controller);
+            Parent root = loader.load();*/
+          /*  Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             root.setOnMousePressed((MouseEvent e) -> {
                 xOffset = e.getSceneX();
@@ -150,7 +154,7 @@ public class InvoiceController implements Initializable {
             stage.setTitle("Confirm");
             stage.getIcons().add(new Image("/images/logo.png"));
             stage.setScene(scene);
-            stage.show();
+            stage.show();*/
         }
 
     }

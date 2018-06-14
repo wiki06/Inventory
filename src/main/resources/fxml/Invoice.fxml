@@ -36,7 +36,7 @@
               </rowConstraints>
                <children>
                   <TextField fx:id="totalAmountField" alignment="CENTER" editable="false" />
-                  <Button mnemonicParsing="false" onAction="#confirmAction" prefHeight="44.0" prefWidth="351.0" styleClass="buttons" text="Checkout" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#confirmAction" prefHeight="44.0" prefWidth="351.0" styleClass="buttons" text="Generate Invoice" GridPane.rowIndex="2" />
                   <ComboBox fx:id="customerComboBox" prefHeight="50.0" prefWidth="350.0" promptText="Select Customer" GridPane.rowIndex="1">
                   </ComboBox>
                </children>

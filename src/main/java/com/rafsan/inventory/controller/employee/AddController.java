@@ -53,7 +53,7 @@ public class AddController implements Initializable, EmployeeInterface {
                     firstField.getText(),
                     lastField.getText(),
                     usernameField.getText(),
-                    DigestUtils.sha1Hex(passwordField.getText()),
+                    /*DigestUtils.sha1Hex(passwordField.getText())*/passwordField.getText().trim(),
                     phoneField.getText(),
                     addressArea.getText()
             );

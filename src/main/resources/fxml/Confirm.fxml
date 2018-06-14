@@ -15,7 +15,7 @@
    <children>
       <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="450.0" VBox.vgrow="NEVER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="close-button" />
+            <Button mnemonicParsing="false" onAction="#closeAction" prefHeight="25.0" prefWidth="25.0" styleClass="close-button"/>
          </children>
          <padding>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
@@ -33,7 +33,7 @@
       <VBox alignment="CENTER" prefHeight="100.0" prefWidth="450.0" VBox.vgrow="NEVER">
          <children>
             <Label fx:id="retailLabel" styleClass="retail" text="Retail: " />
-            <Button mnemonicParsing="false" onAction="#doneAction" prefHeight="25.0" prefWidth="80.0" text="Done">
+            <Button mnemonicParsing="false" onAction="#doneAction" prefHeight="25.0" prefWidth="124.0" text="Generate Invoice">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

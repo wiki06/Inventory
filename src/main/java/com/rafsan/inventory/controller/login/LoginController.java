@@ -68,11 +68,12 @@ public class LoginController implements Initializable {
         if (validateInput()) {
 
             String username = usernameField.getText().trim();
+            String password = passwordField.getText().trim();
 //            String password = DigestUtils.sha1Hex((passwordField.getText().trim()));
 
             if (model.checkUser(username)) {
 
-                if (model.checkPassword(username, "password")) {
+                if (model.checkPassword(username, password)) {
 
                     ((Node) (event.getSource())).getScene().getWindow().hide();
 

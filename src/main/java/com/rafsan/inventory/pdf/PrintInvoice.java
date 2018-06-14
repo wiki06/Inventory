@@ -638,10 +638,10 @@ public class PrintInvoice {
 		else
 		{
 			sb.append(pw((n / 1000000000), "Hundred "));
-			sb.append(pw((n / 10000000) % 100, "crore "));
-			sb.append(pw(((n / 100000) % 100), "lakh "));
-			sb.append(pw(((n / 1000) % 100), "thousand "));
-			sb.append(pw(((n / 100) % 10), "hundred "));
+			sb.append(pw((n / 10000000) % 100, "Crore "));
+			sb.append(pw(((n / 100000) % 100), "Lakh "));
+			sb.append(pw(((n / 1000) % 100), "Thousand "));
+			sb.append(pw(((n / 100) % 10), "Hundred "));
 			sb.append(pw((n % 100), " "));
 		}
 		
