@@ -5,6 +5,10 @@ import com.rafsan.inventory.entity.Sale;
 import com.rafsan.inventory.model.ProductModel;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import org.hibernate.JDBCException;
+import org.hibernate.exception.ConstraintViolationException;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -312,6 +316,7 @@ public class ProductController implements Initializable, ProductInterface {
     @FXML
     public void deleteAction(ActionEvent event) {
 
+    	try {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete");
         alert.setHeaderText("Delete Product");
@@ -326,6 +331,12 @@ public class ProductController implements Initializable, ProductInterface {
         }
 
         productTable.getSelectionModel().clearSelection();
+    	}catch (JDBCException e) {
+    		System.out.println(e.getMessage());
+    		Alert alert = new Alert(Alert.AlertType.ERROR);
+    		alert.setHeaderText("Please remove the product from sales page to continue!");
+    		alert.showAndWait();
+		}
     }
 
 }

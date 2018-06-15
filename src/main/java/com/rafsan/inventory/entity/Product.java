@@ -88,7 +88,7 @@ public class Product implements Serializable {
 	}
 
 	public Product(long id, String productName, double price, double quantity, String description, double cgst,
-			double sgst, Category category/*, double cgstPer, double sgstPer*/) {
+			double sgst, Category category,String hsncode/*, double cgstPer, double sgstPer*/) {
 		super();
 		this.id = id;
 		this.productName = productName;
@@ -98,6 +98,7 @@ public class Product implements Serializable {
 		this.cgst = cgst;
 		this.sgst = sgst;
 		this.category = category;
+		this.hsncode=hsncode;
 		/*this.cgstPer = cgstPer;
 		this.sgstPer = sgstPer;*/
 //		this.supplier = supplier;

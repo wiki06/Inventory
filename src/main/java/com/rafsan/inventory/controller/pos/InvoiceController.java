@@ -3,6 +3,7 @@ package com.rafsan.inventory.controller.pos;
 import java.math.BigInteger;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 import com.rafsan.inventory.entity.Invoice;
@@ -61,7 +62,7 @@ public class InvoiceController implements Initializable {
         salesModel = new SalesModel();
         invoiceModel = new InvoiceModel();
         supplierModel = new SupplierModel();
-        totalAmountField.setText(String.valueOf(netPrice));
+        totalAmountField.setText(new DecimalFormat(".##").format(netPrice));
         ObservableList<String> list = FXCollections.observableArrayList(supplierModel.getNames());
         customerComboBox.setStyle("-fx-font: 20px \"Serif\";");
         customerComboBox.setItems(list);

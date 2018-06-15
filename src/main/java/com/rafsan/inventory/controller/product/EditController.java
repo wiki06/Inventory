@@ -82,7 +82,7 @@ public class EditController implements Initializable, ProductInterface {
                     descriptionArea.getText(),
                     Double.parseDouble(sgst.getText()),
                     Double.parseDouble(cgst.getText()),
-                    category
+                    category,hsnCode.getText()
             );
 
             productModel.updateProduct(editedProduct);

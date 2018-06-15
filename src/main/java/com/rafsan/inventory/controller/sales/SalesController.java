@@ -1,9 +1,11 @@
 package com.rafsan.inventory.controller.sales;
 
+import com.rafsan.inventory.entity.Product;
 import com.rafsan.inventory.entity.Sale;
 import com.rafsan.inventory.interfaces.SaleInterface;
 import com.rafsan.inventory.model.SalesModel;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
@@ -17,7 +19,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -207,5 +211,20 @@ public class SalesController implements Initializable, SaleInterface {
 
     @FXML
     public void deleteAction(ActionEvent event) throws Exception {
-    }
+    	
+    	 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+         alert.setTitle("Delete");
+         alert.setHeaderText("Delete Sale");
+         alert.setContentText("Are you sure?");
+
+         Optional<ButtonType> result = alert.showAndWait();
+         if (result.get() == ButtonType.OK) {
+             Sale selectedSale = salesTable.getSelectionModel().getSelectedItem();
+             System.out.println(selectedSale.getInvoice());
+             model.deleteSale(selectedSale);
+             SALELIST.remove(selectedSale);
+         }
+         salesTable.getSelectionModel().clearSelection();
+     }
+    
 }
