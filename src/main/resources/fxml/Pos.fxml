@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.*?>
 <?import java.lang.*?>
@@ -42,6 +43,11 @@
             <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="560.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#logoutAction" prefHeight="30.0" prefWidth="30.0" styleClass="logout-button" />
+                  <Label contentDisplay="CENTER" prefHeight="40.0" prefWidth="271.0" text="    SREE SIVA SAKTHI ENTERPRISES" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="19.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
          </children>
@@ -196,7 +202,7 @@
                                     <TextField fx:id="discountField" alignment="CENTER_RIGHT" editable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="120.0" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                                     <TextField fx:id="netPayableField" alignment="CENTER_RIGHT" editable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="120.0" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                                     <TextField fx:id="sgstField" alignment="CENTER_RIGHT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="120.0" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField visible="false" fx:id="hsnCodeField"></TextField>
+                                    <TextField fx:id="hsnCodeField" visible="false" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="5.0" />

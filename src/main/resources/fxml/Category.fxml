@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
@@ -27,6 +28,11 @@
                      <children>
                         <Button fx:id="menu" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="hamburger-button" />
                         <Button layoutX="52.0" layoutY="18.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="30.0" prefWidth="30.0" styleClass="logout-button" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="18.0" prefHeight="30.0" prefWidth="259.0" text="SREE SIVA SAKTHI ENTERPRISES" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="19.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                   <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="200.0" HBox.hgrow="NEVER">
