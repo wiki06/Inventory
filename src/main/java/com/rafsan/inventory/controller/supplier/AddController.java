@@ -59,8 +59,8 @@ public class AddController implements Initializable, SupplierInterface {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Successful");
-            alert.setHeaderText("Employee Created!");
-            alert.setContentText("Employee is created successfully");
+            alert.setHeaderText("Customer Created!");
+            alert.setContentText("Customer is created successfully");
             alert.showAndWait();
         }
     }

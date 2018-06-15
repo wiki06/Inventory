@@ -68,7 +68,7 @@
                      </GridPane.margin>
                   </TextArea>
                   <Label text="GSTN" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                  <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="gstnCode" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="10.0" />
                      </GridPane.margin>
@@ -80,7 +80,7 @@
                      </GridPane.margin>
                   </TextArea>
                   <Label layoutX="76.0" layoutY="147.0" text="Phone" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                  <TextField fx:id="gstnCode" layoutX="120.0" layoutY="143.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="phoneField"  layoutX="120.0" layoutY="143.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets right="10.0" />
                      </GridPane.margin>
