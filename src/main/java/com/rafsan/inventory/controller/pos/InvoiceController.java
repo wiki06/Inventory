@@ -1,9 +1,12 @@
 package com.rafsan.inventory.controller.pos;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.math.BigInteger;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.rafsan.inventory.entity.Invoice;
@@ -29,6 +32,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -78,6 +82,7 @@ public class InvoiceController implements Initializable {
     @FXML
     public void confirmAction(ActionEvent event) throws Exception {
 
+    	String invoiceName=null;
         if (validateInput()) {
             /*double paid = Double.parseDouble(paidAmountField.getText().trim());*/
         	double paid = 0.0;
@@ -138,7 +143,7 @@ public class InvoiceController implements Initializable {
             ConfirmController controller = new ConfirmController();
             controller.setData(retail, items, invoiceId, supplier);
             PrintInvoice pi = new PrintInvoice(items, "", invoiceId, supplier);
-            pi.generateReport();
+            invoiceName=pi.generateReport();
             System.out.println("invoice generated");
            /* loader.setController(controller);
             Parent root = loader.load();*/
@@ -158,6 +163,20 @@ public class InvoiceController implements Initializable {
             stage.show();*/
         }
         ((Node) (event.getSource())).getScene().getWindow().hide();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setHeaderText("Your Invoice saved in C:\\Invoice directory!");
+		Optional<ButtonType> result=alert.showAndWait();
+		if(result.get() == ButtonType.OK) {
+			System.out.println("download completed");
+			if(invoiceName!=null) {
+				File file = new File(invoiceName);
+				if(file.exists()) {
+					Desktop.getDesktop().open(file);
+				}
+			}
+				
+			
+		}
 
     }
 

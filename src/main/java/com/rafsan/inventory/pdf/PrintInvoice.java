@@ -48,7 +48,7 @@ public class PrintInvoice {
         this.supplier = supplier;
     }
 
-    public void generateReport() {
+    public String generateReport() {
 
         try {
         	Document document = new Document(PageSize.A4);
@@ -56,7 +56,7 @@ public class PrintInvoice {
     		if(!directory.exists()) {
     			directory.mkdirs();
     		}
-            FileOutputStream fs = new FileOutputStream("C:/Invoice/Report_"+invoiceId+".pdf");
+            FileOutputStream fs = new FileOutputStream("C:/Invoice/Invoice_"+invoiceId+".pdf");
             PdfWriter writer = PdfWriter.getInstance(document, fs);
             document.open();
             
@@ -93,6 +93,8 @@ public class PrintInvoice {
         } catch (DocumentException | FileNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
+        
+        return "C:/Invoice/Invoice_"+invoiceId+".pdf";
     }
 
     private PdfPCell getStoreName() {
