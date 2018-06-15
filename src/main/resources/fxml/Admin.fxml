@@ -36,7 +36,6 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Label text="Label" />
                </children>
             </HBox>
          </children>
