@@ -10,6 +10,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.TabSettings;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
@@ -43,6 +44,8 @@ public class PrintInvoice {
 	private final String invoiceId;
 	private final Supplier supplier;
 	private double grandTotal;
+	private double cgstTotal;
+	private double sgstTotal;
 
 
 	public PrintInvoice(ObservableList<Item> items, String barcode, String invoiceId, Supplier supplier) {
@@ -54,6 +57,9 @@ public class PrintInvoice {
 
 	public String generateReport() {
 
+		cgstTotal = 0.0;
+		sgstTotal = 0.0;
+		
 		try (FileOutputStream fs = new FileOutputStream("C:/Invoice/Invoice_"+invoiceId+".pdf");){
 			Document document = new Document(PageSize.A4);
 			File directory = new File("c://Invoice");
@@ -101,9 +107,11 @@ public class PrintInvoice {
 	private PdfPCell getStoreName(){
 		Image img = null;
 		try {
-			img = Image.getInstance("c:/logo.png");
-			img.scaleAbsolute(40f, 20f);
+			
+			img = Image.getInstance("src/main/resources/images/sss_logo.jpg");
+			img.scaleAbsolute(60f, 15f);
 		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		PdfPCell pdfPCell = new PdfPCell();
 		pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -330,7 +338,7 @@ public class PrintInvoice {
 
 			pdfPCell = new PdfPCell();
 			pdfPCell.setFixedHeight(20f);
-			pdfPCell.setBorder(Rectangle.RIGHT);
+			pdfPCell.setBorder(Rectangle.RIGHT | Rectangle.LEFT);
 			p = new Phrase();
 			p.add(new Chunk(""+itemCount, font));
 			pdfPCell.setPhrase(p);
@@ -375,6 +383,7 @@ public class PrintInvoice {
 			pdfPCell = new PdfPCell();
 			pdfPCell.setBorder(Rectangle.RIGHT);
 			p = new Phrase();
+			cgstTotal = cgstTotal+item.getCgst();
 			p.add(new Chunk(""+item.getCgst(), font));
 			pdfPCell.setPhrase(p);
 			table.addCell(pdfPCell);
@@ -389,6 +398,7 @@ public class PrintInvoice {
 			pdfPCell = new PdfPCell();
 			pdfPCell.setBorder(Rectangle.RIGHT);
 			p = new Phrase();
+			sgstTotal = sgstTotal+item.getSgst();
 			p.add(new Chunk(""+item.getSgst(), font));
 			pdfPCell.setPhrase(p);
 			table.addCell(pdfPCell);
@@ -407,11 +417,20 @@ public class PrintInvoice {
 
 		if(itemCount<=15) {
 			for(int i = 1; i<=10; i++) {
-				float space = 315-(itemCount*20);
-				pdfPCell = new PdfPCell();
-				pdfPCell.setBorder(Rectangle.RIGHT);
-				pdfPCell.setFixedHeight(space);
-				table.addCell(pdfPCell);
+				if(i ==  1) {
+					float space = 315-(itemCount*20);
+					pdfPCell = new PdfPCell();
+					pdfPCell.setBorder(Rectangle.RIGHT | Rectangle.LEFT);
+					pdfPCell.setFixedHeight(space);
+					table.addCell(pdfPCell);
+				}else {
+					float space = 315-(itemCount*20);
+					pdfPCell = new PdfPCell();
+					pdfPCell.setBorder(Rectangle.RIGHT);
+					pdfPCell.setFixedHeight(space);
+					table.addCell(pdfPCell);
+				}
+				
 			}
 		}
 
@@ -488,7 +507,7 @@ public class PrintInvoice {
 		pdfPCell = new PdfPCell();
 		pdfPCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		p = new Phrase();
-		p.add(new Chunk("Grand Total ",font));
+		p.add(new Chunk("Grand Total(including GST)",font));
 		pdfPCell.setPhrase(p);
 		table.addCell(pdfPCell);
 
@@ -551,9 +570,17 @@ public class PrintInvoice {
 		pdfPCell = new PdfPCell();
 		pdfPCell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		p = new Phrase();
-		p.add(new Chunk("\n\n\nCertified that the particulars given above are true and correct\n\n\n\n\n\n\n", new Font(FontFamily.HELVETICA, 7)));
+		p.add(new Chunk("---------------------------------"));
+		p.add(new Chunk("\nCGST Amount        "+cgstTotal, new Font(FontFamily.HELVETICA, 7)));
+		p.add(new Chunk("\n---------------------------------"));
+		p.add(new Chunk("\nSGST Amount        "+sgstTotal, new Font(FontFamily.HELVETICA, 7)));
+		p.add(new Chunk("\n---------------------------------"));
+		double totalamount = cgstTotal+sgstTotal;
+		p.add(new Chunk("\nTotal GST             "+totalamount, new Font(FontFamily.HELVETICA, 8)));
+		p.add(new Chunk("\n---------------------------------"));
+		p.add(new Chunk("\nCertified that the particulars given above are true and correct\n\n", new Font(FontFamily.HELVETICA, 5)));
 		p.add(new Chunk("For Sree Siva Sakthi Enterprises\n",font));
-		p.add(new Chunk("\n\n\n\n"));
+		p.add(new Chunk("\n\n\n"));
 		p.add(new Chunk("Authorised signatory",font));
 		pdfPCell.setPhrase(p);
 		table.addCell(pdfPCell);
